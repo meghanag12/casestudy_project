@@ -1,0 +1,19 @@
+
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: inventory-portfolio
+            client-secret: SGBznbBWskl633KCNPzluDCtGffGSmUn
+            scope: openid,profile,email
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:7070/realms/inventory-portfolio
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:7070/realms/inventory-portfolio
