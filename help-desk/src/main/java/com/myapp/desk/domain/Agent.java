@@ -2,9 +2,11 @@ package com.myapp.desk.domain;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity //(Persistant)
 @Table(name = "agents")
-public class Agent {
+public class Agent implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

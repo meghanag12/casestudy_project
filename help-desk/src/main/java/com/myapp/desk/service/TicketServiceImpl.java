@@ -5,9 +5,12 @@ import com.myapp.desk.domain.Status;
 import com.myapp.desk.domain.Ticket;
 import com.myapp.desk.respository.AgentRepository;
 import com.myapp.desk.respository.TicketRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TicketServiceImpl implements TicketService {
@@ -43,6 +46,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
+    @CacheEvict(value = "tickets",key = "#ticketId")
     public Ticket closeTicket(Long ticketId) {
         return null;
     }
@@ -55,5 +59,11 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public List<Ticket> getTickets() {
         return ticketRepository.findAll();
+    }
+
+    @Override
+    @Cacheable(value = "tickets",key = "#ticketId")
+    public Optional<Ticket> getTicketById(Long ticketId) {
+        return ticketRepository.findById(ticketId);
     }
 }

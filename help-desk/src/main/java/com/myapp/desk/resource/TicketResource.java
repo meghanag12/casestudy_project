@@ -34,4 +34,8 @@ public class TicketResource {
        Ticket updated = ticketService.assignAgentToTicket(ticketId, agentId);
        return ResponseEntity.ok(updated);
     }
+    @GetMapping("/{id}")
+    public Ticket getTicketById(@PathVariable Long id) {
+        return ticketService.getTicketById(id).get();
+    }
 }
