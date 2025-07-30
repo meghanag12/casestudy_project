@@ -56,6 +56,12 @@ public class TicketServiceImpl implements TicketService {
         return null;
     }
 
+    @Override 
+    @CacheEvict(value = "tickets",key = "#ticketId")
+    public void deleteTicket(Long ticketId){
+        ticketRepository.deleteById(); 
+    }
+
     @Override
     public List<Ticket> getTickets() {
         return ticketRepository.findAll();

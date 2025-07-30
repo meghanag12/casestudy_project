@@ -13,6 +13,7 @@ public interface TicketService {
     Ticket resolveTicket(Long ticketId);
     Ticket closeTicket(Long ticketId);
     Ticket updateTicket(Long ticketId, Ticket ticket);
+    Ticket deleteTicket(Long ticketId);
     List<Ticket> getTickets();
     Optional<Ticket> getTicketById(Long ticketId);
 }
